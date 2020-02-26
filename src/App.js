@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 
+import Country from "./components/Country";
+
 const App = () => {
   const [country, setCountry] = useState();
   const [countries, setCountries] = useState([]);
@@ -19,22 +21,7 @@ const App = () => {
     }
     if (countries.length === 1) {
       return countries.map((c, i) => {
-        return (
-          <div key={i}>
-            <h1>{c.name}</h1>
-            <p>Capital {c.capital}</p>
-            <p>Population {c.population}</p>
-            <br />
-            <h2>Languages</h2>
-            <ul>
-              {c.languages.map(l => (
-                <li>{l.name}</li>
-              ))}
-            </ul>
-
-            <img src={c.flag} alt={c.name + " Flag"} height="100" width="100" />
-          </div>
-        );
+        return <Country key={i} c={c} />;
       });
     }
 
